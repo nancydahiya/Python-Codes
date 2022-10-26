@@ -1,14 +1,14 @@
 def registration(username=None,password=None,password1=None):
-    username=input("Enter Username : ")
-    password=input("Enter Password : ")
-    password1=input("Re enter Your Password : ")
+    username=input("Create Username : ")
+    password=input("Create Password : ")
+    password1=input("Re enter your password : ")
     db=open("database.txt","r")
-    pq=[]
+    v=[]
     for x in db:
         a,b= x.split(",")
         b=b.strip()
         c=a,b
-        pq.append()
+        v.append()
     if password1!=password:
         print("Password does not match")
         registration()
@@ -28,12 +28,12 @@ def registration(username=None,password=None,password1=None):
                 else:
                     pass
             else:
-                print("invalid")
+                print("Invalid")
         else:
-            print("invalid")
+            print("Invalid")
 
         if len(user) > 0:
-            if username not in pq:
+            if username not in v:
                 valid = valid + 1
                 pass
             else:
@@ -56,16 +56,16 @@ def registration(username=None,password=None,password1=None):
 
             valid = valid + 1
         else:
-            print("invalid password")
+            print("Invalid Password")
 
         if valid == 2:
 
             with open("database.txt", "a") as db:
                 db.write(username + ", " + password1 + "\n")
-                print("REGISTRATION COMPLETED SUCESSFULLY")
+                print("REGISTERATION COMPLETED SUCESSFULLY")
             Home_page()
         else:
-            print("Please try again")
+            print("please try again")
             registration()
 
             
@@ -73,7 +73,7 @@ def welcome():
     print("Welcome to your dashboard")
 
 def Forget_password(username=None):
-    Username = str(input("Enter your username:"))
+    Username = str(input("Enter your Username :"))
 
     if not len(Username ) < 1:
 
@@ -94,15 +94,16 @@ def Forget_password(username=None):
 
                 print("your password is: ",f[d.index(Username)])
             else:
-                print("Username not exist please register")
+                print("Username does not exist, please register")
                 registration()
 
-else:
+
+        else:
             pass
 
 def login(username=None,password=None):
-    Username = input("Enter your username:")
-    Password = input("Enter your Password:")
+    Username = input("Enter Username:")
+    Password = input("Enter Password:")
 
     if not len(Username or Password) < 1:
 
@@ -121,32 +122,37 @@ def login(username=None,password=None):
                 if data[Username]:
                     try:
                         if Password == data[Username]:
-                            print("Login successful!")
+                            print("Login success!")
                             print("Hi", Username)
                             welcome()
                         else:
-                            print("Incorrect password or username")
+                            print("Incorrect username or password")
                             print("Please register")
-                            print(" or ")
-                            print("Please select using the forget password option")
-                    Home_page()
+                            print("      or")
+                            print("Please select forget password option")
+
+                            Home_page()
                     except:
-                        print("Incorrect password or username")
+                        print("Incorrect username or password")
                         print("Please register")
                         print(" or ")
-                        print("Please select using the forget password option")
+                        print("Please select forget password option")
                         Home_page()
+
+
                 else:
                     print("Password or username doesn't exist")
                     print("Please register")
                     print(" or ")
-                    print("Please select using the forget password option")
+                    print("Please select forget password option")
                     Home_page()
             except:
                 print("Password or username doesn't exist")
                 Home_page()
 
-else:
+
+
+    else:
         print("Please attempt login again")
         login()
 
@@ -154,7 +160,7 @@ else:
 
 def Home_page(option=None):
     print("Please select one of the below options")
-    option=input(" 1.Login \n 2.Register \n 3.Forget Password \n 4.Exit \n")
+    option=input(" 1.Login \n 2.Register \n 3.Forget_password \n 4.Exit \n")
     if option=="1":
         login()
     elif option=="2":
@@ -165,6 +171,6 @@ def Home_page(option=None):
         print("Thank You...")
         exit()
     else:
-        print("invalid option")
+        print("Invalid option")
         Home_page()
-Home_page() 
+Home_page()
